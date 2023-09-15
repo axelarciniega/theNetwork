@@ -1,6 +1,8 @@
 <template>
-    <div v-if="post" class="card elevation-5 selectable my-3">
-        <section class="row">
+    <!-- <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}"> -->
+
+        <div v-if="post" class="card elevation-5 selectable my-3">
+            <section class="row">
             <div class="col-5">
                 <h3> <img class="profile-pic" :src="post.creator.picture" alt="">{{ post.creator.name }}</h3>
                 <Span>{{ post.createdAt.toLocaleTimeString() }}</Span>
@@ -8,12 +10,13 @@
             <div class="text-center mt-3">
                 <i>{{ post.body }}</i>
             </div>
-            <div class="col-12 d-flex justify-content-center">
+            <div v-if="post.imgUrl" class="col-12 d-flex justify-content-center">
                 <img class="post-picture" :src="post.imgUrl" alt="">
             </div>
             
         </section>
     </div>
+<!-- </router-link> -->
 </template>
 
 <script>
