@@ -3,6 +3,7 @@
 export class Profile{
     constructor(data){
         this.id = data.id
+        this.creatorId = data.creatorId
         this.name = data.name
         this.bio = data.bio
         this.class = data.class

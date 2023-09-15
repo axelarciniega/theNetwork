@@ -16,6 +16,12 @@ class PostsService{
 
     }
 
+    async getPostsByProfileId(creatorId){
+        AppState.posts = []
+        const res = await api.get(`api/projects?creatorId${creatorId}`)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+    }
+
 
 }
 

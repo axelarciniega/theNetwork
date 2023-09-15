@@ -1,5 +1,28 @@
 <template>
-    This is the profile page
+    <div v-if="profile" class="container">
+        <section class="row cover-image">
+            <div class="col-12 d-flex justify-content-center ">
+                    <img class="profile-pic rounded-pill" :src="profile.picture" alt="">
+                </div>
+                <div class=" text-light col-12 d-flex justify-content-center">
+                    <h1>{{ profile.name }}</h1>
+                </div>
+                <p class="text-light">{{ profile.bio }}</p>
+        </section>
+
+        <section class="row my-4">
+            <form action="">
+                <div class=" col-4">
+  <textarea class="form-control" type="text" placeholder="Say Something" style="height: 100px"></textarea>
+  
+</div>
+
+
+
+            </form>
+        </section>
+
+    </div>
 </template>
 
 <script>
@@ -16,9 +39,17 @@ import { useRoute } from 'vue-router';
 export default {
 setup() {
     onMounted(() => {
+        // getPostsByProfileId()
         getProfileById()
     });
     const route = useRoute()
+    // async function getPostsByProfileId(){
+    //     try {
+    //         await profilesService.getPostsByProfileId(route.params.profileId)
+    //     } catch (error) {
+    //         Pop.error(error)
+    //     }
+    // }
     async function getProfileById(){
         try {
             await profilesService.getProfileById(route.params.profileId)
@@ -27,12 +58,33 @@ setup() {
         }
     }
   return {
-    profile: computed(() => AppState.activeProfile)
+    posts: computed(() => AppState.posts),
+    profile: computed(() => AppState.activeProfile),
+    coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
   };
 },
 };
 </script>
 
 
+
 <style>
+
+.cover-image{
+    background-image: v-bind(coverImg);
+    min-height: 30vh;
+    max-height: 35vh;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.profile-pic{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+
+
 </style>
