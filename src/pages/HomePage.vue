@@ -1,4 +1,8 @@
 <template>
+   <section class="row my-4">
+           <PostForm/>
+        </section>
+        
   <div class="container">
     <section class="row">
       <div v-for="post in posts" :key="post.id">

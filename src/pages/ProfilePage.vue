@@ -10,17 +10,11 @@
                 <p class="text-light">{{ profile.bio }}</p>
         </section>
 
-        <section class="row my-4">
-            <form action="">
-                <div class=" col-4">
-  <textarea class="form-control" type="text" placeholder="Say Something" style="height: 100px"></textarea>
-  
-</div>
-
-
-
-            </form>
+        <section v-if="account.id == profile.id" class="row my-4">
+           <PostForm/>
         </section>
+
+       
 
     </div>
 </template>
@@ -31,6 +25,7 @@ import { profilesService } from '../services/ProfilesService';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
 import { useRoute } from 'vue-router';
+import { postsService } from '../services/PostsService';
 
 
 
@@ -60,7 +55,21 @@ setup() {
   return {
     posts: computed(() => AppState.posts),
     profile: computed(() => AppState.activeProfile),
-    coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
+    coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`),
+    account: computed(() => AppState.account),
+
+
+    async removePost(){
+        try {
+        if(await Pop.confirm('Are you sure you want to remove?')){
+            const postId = AppState.postId
+            await postsService.removePost(postId)
+        }
+        } catch (error) {
+            Pop.error(error)
+        }
+    }
+
   };
 },
 };

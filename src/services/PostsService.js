@@ -22,6 +22,22 @@ class PostsService{
         AppState.posts = res.data.posts.map(post => new Post(post))
     }
 
+    async createPost(postData){
+        const res = await api.post('api/posts', postData)
+        logger.log(res.data)
+        const newPost = new Post(res.data)
+        return newPost
+    }
+
+    async removePost(postId){
+        const res = await api.delete(`api/posts/${postId}`)
+        logger.log('removing',res.data)
+        
+        let indexToRemove = AppState.posts.findIndex(post => post.id == post.id)
+        if(indexToRemove >= 0){
+            AppState.posts.splice(indexToRemove, 1)
+        }
+    }
 
 }
 

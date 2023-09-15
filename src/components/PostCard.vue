@@ -13,19 +13,37 @@
             <div v-if="post.imgUrl" class="col-12 d-flex justify-content-center">
                 <img class="post-picture" :src="post.imgUrl" alt="">
             </div>
+            
             </section>
         </router-link>
+        
         </div>
+
+          <!-- <section v-if="account.id == profile.id" class="row my-4">
+            <div class="col-5">
+
+                <button @click.prevent="removePost">Remove Post <i class="mdi mdi-trash"></i></button>
+            </div>
+        </section> -->
+
+        
 
 </template>
 
 <script>
+import { computed } from 'vue';
 import { Post } from '../models/Post';
+import { AppState } from '../AppState';
+
+
+
 
 export default {
     props: {post: {type: Post, required: true }},
 setup() {
-  return {};
+  return {
+    account: computed(() => AppState.account)
+  };
 },
 };
 </script>
