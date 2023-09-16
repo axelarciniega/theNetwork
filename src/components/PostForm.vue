@@ -6,7 +6,7 @@
 
             <div class="collapse collapse-horizontal" id="collapse1">
 
-            <form @click.prevent="createPost">
+            <form @submit.prevent="createPost">
                 <div class="col-4">
                     <textarea v-model="postData.body" class="form-control" type="text" placeholder="Say Something" style="height: 100px"></textarea>
                 </div>
@@ -37,6 +37,7 @@ setup() {
             logger.log('Creating Post',postData.value)
             await postsService.createPost(postData.value)
             postData.value = {}
+            Pop.success('Success on creating post!')
         } catch (error) {
             Pop.error(error)
         }
