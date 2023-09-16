@@ -16,15 +16,15 @@
             
             </section>
         </router-link>
-        
-        </div>
-
-          <!-- <section v-if="account.id == profile.id" class="row my-4">
-            <div class="col-5">
+            <!-- <section  class="row my-4">
+            <div class="col-5" v-if="post.creatorId == account.id">
 
                 <button @click.prevent="removePost">Remove Post <i class="mdi mdi-trash"></i></button>
             </div>
         </section> -->
+        </div>
+
+      
 
         
 
@@ -42,7 +42,8 @@ export default {
     props: {post: {type: Post, required: true }},
 setup() {
   return {
-    account: computed(() => AppState.account)
+    account: computed(() => AppState.account),
+     profile: computed(() => AppState.activeProfile),
   };
 },
 };

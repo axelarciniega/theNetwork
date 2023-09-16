@@ -10,6 +10,11 @@ export const AppState = reactive({
   posts: [],
 
   /**@type {Profile} */
-  activeProfile: null
+  activeProfile: null,
+
+/** @type {Number} */
+  pageNumber: 1,
+/** @type {Number} */
+  totalPages: 1
 
 })

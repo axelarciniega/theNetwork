@@ -14,6 +14,21 @@
            <PostForm/>
         </section>
 
+    
+
+        <section class="row">
+            <div class="col-12 text-center">{{ profile.name }}'s posts'</div>
+            <div v-for="post in posts" :key="post.id" >
+            <PostCard :post="post"/>
+            <section  class="row my-4">
+            <div class="col-5" v-if="post.creatorId == account.id">
+
+                <button @click.prevent="removePost">Remove Post <i class="mdi mdi-trash"></i></button>
+            </div>
+        </section>
+            </div>
+        </section>
+
        
 
     </div>
@@ -34,17 +49,17 @@ import { postsService } from '../services/PostsService';
 export default {
 setup() {
     onMounted(() => {
-        // getPostsByProfileId()
+        getPostsByProfileId()
         getProfileById()
     });
     const route = useRoute()
-    // async function getPostsByProfileId(){
-    //     try {
-    //         await profilesService.getPostsByProfileId(route.params.profileId)
-    //     } catch (error) {
-    //         Pop.error(error)
-    //     }
-    // }
+    async function getPostsByProfileId(){
+        try {
+            await postsService.getPostsByProfileId(route.params.profileId)
+        } catch (error) {
+            Pop.error(error)
+        }
+    }
     async function getProfileById(){
         try {
             await profilesService.getProfileById(route.params.profileId)
@@ -62,8 +77,9 @@ setup() {
     async removePost(){
         try {
         if(await Pop.confirm('Are you sure you want to remove?')){
-            const postId = AppState.postId
+            const postId = AppState.posts.id
             await postsService.removePost(postId)
+            
         }
         } catch (error) {
             Pop.error(error)

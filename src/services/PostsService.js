@@ -16,9 +16,9 @@ class PostsService{
 
     }
 
-    async getPostsByProfileId(creatorId){
+    async getPostsByProfileId(profileId){
         AppState.posts = []
-        const res = await api.get(`api/projects?creatorId${creatorId}`)
+        const res = await api.get(`api/posts?creatorId=${profileId}`)
         AppState.posts = res.data.posts.map(post => new Post(post))
     }
 
@@ -26,14 +26,26 @@ class PostsService{
         const res = await api.post('api/posts', postData)
         logger.log(res.data)
         const newPost = new Post(res.data)
+        AppState.posts.push(newPost)
         return newPost
     }
 
+    async changePage(url){
+        logger.log(url)
+        const res = await api.get(url)
+        logger.log(res.data)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumber = res.data.page
+        AppState.totalPages = res.data.totalPages
+
+    }
+
     async removePost(postId){
+        console.log(postId)
         const res = await api.delete(`api/posts/${postId}`)
         logger.log('removing',res.data)
         
-        let indexToRemove = AppState.posts.findIndex(post => post.id == post.id)
+        let indexToRemove = AppState.posts.findIndex(post => post.id == postId)
         if(indexToRemove >= 0){
             AppState.posts.splice(indexToRemove, 1)
         }

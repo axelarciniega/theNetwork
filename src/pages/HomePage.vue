@@ -2,7 +2,7 @@
    <section class="row my-4">
            <PostForm/>
         </section>
-        
+
   <div class="container">
     <section class="row">
       <div v-for="post in posts" :key="post.id">
@@ -10,6 +10,14 @@
       </div>
     </section>
   </div>
+
+  <div class="container">
+    <section class="row justify-content-between">
+      <button @click="changePage(pageNumber -1)" :disabled="pageNumber <= 1" class="col-3">Newer Posts ⬅️</button>
+      <button @click="changePage(pageNumber+1)"  class="col-3">Older posts ➡️</button>
+    </section>
+  </div>
+
 </template>
 
 <script>
@@ -34,7 +42,19 @@ export default {
     }
 
     return {
-      posts: computed(() => AppState.posts)
+
+      async changePage(number){
+        try {
+          await postsService.changePage(`api/posts?page=${number}`)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+
+      posts: computed(() => AppState.posts),
+      pageNumber: computed(() => AppState.pageNumber),
+      totalPages: computed(() => AppState.totalPages)
     }
   }
 }
