@@ -20,6 +20,6 @@ export const AppState = reactive({
   /**@type {String} */
   searchTerm: '',
 
-  sponsers: []
+  announcement: []
 
 })

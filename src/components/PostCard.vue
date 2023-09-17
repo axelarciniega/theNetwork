@@ -1,5 +1,5 @@
 <template>
-<div v-if="post" class="card elevation-5 selectable my-3">
+<div v-if="post" class="card elevation-5 selectable my-3 bg-dark">
     <router-link :to="{name: 'Profile', params: {profileId: post?.creatorId}}">
 
             <section class="row">

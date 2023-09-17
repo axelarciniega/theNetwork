@@ -1,4 +1,14 @@
 <template>
+  <div class="container">
+
+    <section class="row">
+      <div v-for="a in annoucement" :key="a.linkURL">
+        <img class="ad-pic" :src="a.banner" alt="">
+      </div>
+      <!-- <Annoucement :annouement="a"/> -->
+      
+    </section>
+  </div>
 
   <div class="container">
     <searchBar/>
@@ -9,10 +19,12 @@
 
 
 
+  <div class="container">
 
-   <section class="row my-4">
-           <PostForm/>
-        </section>
+    <section class="row my-4">
+      <PostForm/>
+    </section>
+  </div>
 
   <div class="container">
     <section class="row">
@@ -40,13 +52,23 @@ import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService.js';
 import { AppState } from '../AppState';
+import { annoucementsServices } from '../services/AnnouncementsServices';
 
 
 export default {
   setup() {
     onMounted(() => {
       getPosts()
+      getRelease()
     })
+
+    async function getRelease(){
+      try {
+        await annoucementsServices.getRelease()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
 
     async function getPosts(){
       try {
@@ -78,13 +100,20 @@ export default {
 
       posts: computed(() => AppState.posts),
       pageNumber: computed(() => AppState.pageNumber),
-      totalPages: computed(() => AppState.totalPages)
+      totalPages: computed(() => AppState.totalPages),
+      annoucement: computed(() => AppState.announcement)
+
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+
+.ad-pic{
+  width: 150vh;
+  height: 25vh;
+}
 .home {
   display: grid;
   height: 80vh;
