@@ -8,7 +8,7 @@
 
             <form @submit.prevent="createPost">
                 <div class="col-4">
-                    <textarea v-model="postData.body" class="form-control" type="text" placeholder="Say Something" style="height: 100px"></textarea>
+                    <textarea required maxlength="300" v-model="postData.body" class="form-control" type="text" placeholder="Say Something" style="height: 100px"></textarea>
                 </div>
                 <div class="col-3">
                     <input v-model="postData.imgUrl" type="url" class="form-control" placeholder="Image Url">
