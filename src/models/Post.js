@@ -9,6 +9,6 @@ export class Post{
         this.likeIds = data.likeIds
         this.posts = data.posts
         this.creator = data.creator
-        this.createdAt = new Date(data.createdAt)
+        this.createdAt = new Date(data.createdAt).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
     }
 }

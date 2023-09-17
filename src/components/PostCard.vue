@@ -5,7 +5,7 @@
             <section class="row">
             <div class="col-5">
                 <h3> <img class="profile-pic" :src="post.creator.picture" alt="">{{ post.creator.name }}</h3>
-                <Span>{{ post.createdAt.toLocaleTimeString() }}</Span>
+                <Span>{{ post.createdAt }}</Span>
             </div>
             <div class="text-center mt-3">
                 <i>{{ post.body }}</i>
@@ -20,6 +20,11 @@
             <div class="col-5" v-if="post.creatorId == account.id">
 
                 <button @click.prevent="removePost">Remove Post <i class="mdi mdi-trash"></i></button>
+            </div>
+            <div class="col-2 d-flex justify-content-end ">
+                <span class="selectable" v-if="account.id" @click="likePost(post.id)">👍</span>
+                <span v-if="!account.id">Likes:</span>
+                {{ post.likeIds.length }}
             </div>
         </section>
         </div>
@@ -52,7 +57,13 @@ setup(props) {
 
 
 
-
+    async likePost(id){
+        try {
+            await postsService.likePost(id)
+        } catch (error) {
+            Pop.error(error)
+        }
+    },
 
       async removePost(){
         try {

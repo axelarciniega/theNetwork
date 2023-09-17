@@ -15,6 +15,11 @@ export const AppState = reactive({
 /** @type {Number} */
   pageNumber: 1,
 /** @type {Number} */
-  totalPages: 1
+  totalPages: 1,
+
+  /**@type {String} */
+  searchTerm: '',
+
+  sponsers: []
 
 })

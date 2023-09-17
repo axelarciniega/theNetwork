@@ -51,6 +51,23 @@ class PostsService{
         }
     }
 
+    async likePost(id){
+        const res = await api.post(`api/posts/${id}/like`)
+        logger.log(res.data)
+        let likes = AppState.posts.findIndex(like => like.id == id)
+        AppState.posts.splice(likes, 1, res.data)
+    }
+
+
+    async searchPosts(searchTerm){
+        const res = await api.get(`api/posts?query=${searchTerm}`)
+        logger.log(res.data)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumber = res.data.page
+        AppState.totalPages = res.data.totalPages
+        AppState.searchTerm = searchTerm
+    }
+
 }
 
 export const postsService = new PostsService()

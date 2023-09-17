@@ -1,4 +1,7 @@
 <template>
+
+
+
     <div v-if="profile" class="container">
         <section class="row cover-image">
             <div class="col-12 d-flex justify-content-center ">

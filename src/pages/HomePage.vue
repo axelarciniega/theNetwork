@@ -1,4 +1,15 @@
 <template>
+
+  <div class="container">
+    <searchBar/>
+  </div>
+
+
+
+
+
+
+
    <section class="row my-4">
            <PostForm/>
         </section>
@@ -12,9 +23,13 @@
   </div>
 
   <div class="container">
-    <section class="row justify-content-between">
+    <section v-if="!searchTerm" class="row justify-content-between">
       <button @click="changePage(pageNumber -1)" :disabled="pageNumber <= 1" class="col-3">Newer Posts ⬅️</button>
       <button @click="changePage(pageNumber+1)"  class="col-3">Older posts ➡️</button>
+    </section>
+    <section v-else class="row">
+      <button @click="changePageWithSearch(pageNumber -1)" :disabled="pageNumber <= 1" class="col-3">Newer Posts👈</button>
+      <button @click="changePageWithSearch(pageNumber +1)" :disabled="pageNumber >= totalPages" class="col-3" >Older Posts👉</button>
     </section>
   </div>
 
@@ -46,6 +61,15 @@ export default {
       async changePage(number){
         try {
           await postsService.changePage(`api/posts?page=${number}`)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async changePageWithSearch(number){
+        try {
+          const searchTerm = AppState.searchTerm
+          await postsService.changePage(`api/posts?query=${searchTerm}&page=${number}`)
         } catch (error) {
           Pop.error(error)
         }
