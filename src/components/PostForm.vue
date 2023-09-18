@@ -1,7 +1,7 @@
 <template>
     <div class="col-3">
 
-                <div class=" col-3 text-center selectable bg-success" style="border: solid 1px black;" data-bs-toggle="collapse" data-bs-target="#collapse1" >Post</div>
+                <div class=" col-3 text-center text-light selectable background-button" style="border: solid 1px black;" data-bs-toggle="collapse" data-bs-target="#collapse1" >Post</div>
             </div>
 
             <div class="collapse collapse-horizontal" id="collapse1">
@@ -49,4 +49,9 @@ setup() {
 
 
 <style>
+
+.background-button{
+    background-color: rgb(81, 0, 237);
+}
+
 </style>

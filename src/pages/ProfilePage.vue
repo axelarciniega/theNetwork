@@ -10,7 +10,28 @@
                 <div class=" text-light col-12 d-flex justify-content-center">
                     <h1>{{ profile.name }}</h1>
                 </div>
-                <p class="text-light">{{ profile.bio }}</p>
+                <p class="text-light d-flex justify-content-center">{{ profile.bio }}</p>
+                <div class="container text-light background-cover justify-content-center">
+                    <div class="col-4">
+                        <h3 >About {{ profile.name }}</h3>
+                    </div>
+                    <div class="col-4">
+                        <h6>{{ profile.email }}</h6>
+                    </div>
+                    <div class="col-4">
+                        {{ profile.github }}
+                    </div>
+                    <div class="col-4">
+                        <p v-if="profile.graduated == true">🎓</p>
+                        <p v-else>Not graduated</p>
+                    </div>
+                    <div class="col-4">
+                        {{ profile.class }}
+                    </div>
+                    <div class="col-4">
+                        {{ profile.linkedin }}
+                    </div>
+                </div>
         </section>
 
         <section v-if="account.id == profile.id" class="row my-4">
@@ -85,7 +106,7 @@ setup() {
 .cover-image{
     background-image: v-bind(coverImg);
     min-height: 30vh;
-    max-height: 35vh;
+    max-height: 90vh;
     background-position: center;
     background-size: cover;
 
@@ -95,6 +116,11 @@ setup() {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+}
+
+.background-cover{
+    background-color: rgba(0, 0, 0, 0.455);
+    backdrop-filter: blur(5px);
 }
 
 

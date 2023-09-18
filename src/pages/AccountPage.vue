@@ -8,19 +8,23 @@
     <form @submit.prevent="editProfile">
       <div class="col-6">
         <label for="">Name</label>
-        <input v-model="editable.name" type="text" class="form-control">
+        <input v-model="editable.name" maxlength="30" type="text" class="form-control">
       </div>
     <div class="col-6">
         <label for="">Picture</label>
-        <input v-model="editable.picture" type="text" class="form-control">
+        <input v-model="editable.picture" maxLength="300" type="text" class="form-control">
       </div>
       <div class="col-6">
         <label for="">Bio</label>
-        <input rows="10" v-model="editable.bio" type="text" class="form-control">
+        <input rows="10" v-model="editable.bio" maxLength="300" type="text" class="form-control">
       </div>
        <div class="col-6">
         <label for="">Cover Image</label>
-        <input rows="10" v-model="editable.coverImg" type="text" class="form-control">
+        <input rows="10" v-model="editable.coverImg" maxLength="300" type="text" class="form-control">
+      </div>
+       <div class="col-6">
+        <label for="">Class</label>
+        <input rows="10" v-model="editable.class" maxLength="23" type="text" class="form-control">
       </div>
       <div class="col-6">
         <button>Save</button>

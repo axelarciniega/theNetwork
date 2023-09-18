@@ -5,13 +5,14 @@ export class Profile{
         this.id = data.id
         this.creatorId = data.creatorId
         this.name = data.name
-        this.bio = data.bio
-        this.class = data.class
-        this.coverImg = data.coverImg
-        this.email = data.email 
-        this.github = data.github
+        this.bio = data.bio || ''
+        this.class = data.class || ''
+        this.coverImg = data.coverImg 
+        this.email = data.email || ''
+        this.github = data.github || ''
         this.picture = data.picture 
-        this.resume = data.resume 
-        this.linkedin = data.linkedin
+        this.resume = data.resume || ''
+        this.linkedin = data.linkedin || ''
+        this.graduated = data.graduated || ''
     }
 }

@@ -1,8 +1,8 @@
 <template>
-<div v-if="post" class="card elevation-5 selectable my-3 bg-dark">
+<div v-if="post" class="card elevation-5 col-9 selectable my-3 background-card">
     <router-link :to="{name: 'Profile', params: {profileId: post?.creatorId}}">
 
-            <section class="row">
+            <section class="row text-light">
             <div class="col-5">
                 <h3> <img class="profile-pic" :src="post.creator.picture" alt="">{{ post.creator.name }}</h3>
                 <Span>{{ post.createdAt }}</Span>
@@ -85,6 +85,10 @@ setup(props) {
 
 
 <style>
+
+.background-card{
+    background-color: rgb(134, 162, 253);
+}
 
 .post-picture{
     height: 41vh;

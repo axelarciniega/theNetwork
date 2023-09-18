@@ -21,7 +21,7 @@
 
   <div class="container">
 
-    <section class="row my-4">
+    <section v-if="account.id" class="row my-4">
       <PostForm/>
     </section>
   </div>
@@ -101,7 +101,8 @@ export default {
       posts: computed(() => AppState.posts),
       pageNumber: computed(() => AppState.pageNumber),
       totalPages: computed(() => AppState.totalPages),
-      annoucement: computed(() => AppState.announcement)
+      annoucement: computed(() => AppState.announcement),
+      account: computed(() => AppState.account)
 
     }
   }

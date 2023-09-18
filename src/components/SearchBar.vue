@@ -29,7 +29,7 @@ setup() {
         try {
             logger.log(searchTerm.value)
             await postsService.searchPosts(searchTerm.value)
-            event.target.reset()
+            
         } catch (error) {
             Pop.error(error)
         }

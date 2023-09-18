@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class=" navbar sticky-top navbar-expand-md navbar-dark background px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div>
-        📱Net<span class="text-success">Work</span>
+        📱Net<span class="text-black">Work</span>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -47,8 +47,10 @@ a:hover {
 }
 
 @media screen and (min-width: 768px) {
-  nav {
+  .background{
+   
     height: 64px;
+    background-color: rgb(81, 0, 237);
   }
 }
 </style>
